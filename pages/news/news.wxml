@@ -1,0 +1,52 @@
+<!--index.wxml-->
+<view class="container">
+    <view class="header"> 
+      <block wx:for="{{channels}}" wx:for-index="index" wx:for-item="item">
+        <button wx:if="{{channel === item.id}}" class="selected" catchtap='changeChannel' data-channel-id="{{item.id}}"> {{item.name}} </button>
+        <block wx:else>
+         <button catchtap='changeChannel' data-channel-id="{{item.id}}"> {{item.name}} </button>
+        </block>
+      </block>
+    </view>
+    <view class="content">
+      <block wx:for="{{posts}}" wx:for-index="index" wx:for-item="item">
+        <view class="post">
+          <view class="user">
+            <view> </view>
+            <view class="user_head">
+              <image mode="widthFix" src="../../utils/image/user_head.jpg"> </image>
+            </view>
+            <view> </view>
+          </view>
+          <view class="main_post" bind:tap="postInfo" data-post-id="{{item.id}}">
+            <view class="title"> {{item.title}} </view>
+            <view class="content"> {{item.content}}</view>
+            <view class="image_container"> 
+              <block wx:for="{{item.images}}" wx:for-item="item">
+               <image mode="widthFix" src="{{item}}" class="thum_image" catchtap='imageInfo'></image>
+              </block>
+            </view>  
+            <view class="operator">
+                <button catchtap="cancelLikePost" class="liked" wx:if="{{item.liked}}" data-post-id="{{item.id}}"></button>
+                <button catchtap="likePost" class="like" wx:else data-post-id="{{item.id}}"></button>
+              <button catchtap="prepareReply" class="chat" data-post-id="{{item.id}}"></button>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <block wx:if="{{preparedReply}}">
+      <view class="reply">
+        <form bindsubmit="postReply">
+          <view class="reply_content">
+            <textarea fixed="true" maxlength="150" auto-height placeholder="输入回复内容" bindblur="setReplyContent"/>
+          </view>
+          <view></view>
+          <view class="reply_operate">
+            <button class="confirm_button" size="mini" type="primary" form-type='submit'>发布</button>
+            <button class="cancel_button" size="mini" type="warn" catchtap="cancelPostReply">取消</button>
+          </view>
+        </form>
+      </view>
+    </block>
+</view>

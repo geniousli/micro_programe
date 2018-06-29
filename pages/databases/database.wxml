@@ -1,0 +1,4 @@
+<!--pages/databases/database.wxml-->
+<button type="warn" bindtap='clearDb'> clear </button>
+<button type="default" bindtap="initDb"> initialize </button>
+<button type="default" bindtap="outputDb"> console </button>

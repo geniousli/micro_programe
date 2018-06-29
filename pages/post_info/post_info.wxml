@@ -1,0 +1,28 @@
+<view class="container">
+    <view class="content">
+      <view class="post">
+        <view class="user"> {{post.user.name}}</view>
+        <view class="main_post" bind:tap="postInfo">
+          <view class="title"> {{post.title}} </view>
+          <view class="content"> {{post.content}}</view>
+          <view class="image_container" bind:catch="imageInfo"> 
+            <block wx:for="{{post.images}}" wx:for-item="item">
+              <image mode="widthFix" src="{{item}}" class="thum_image"></image>
+            </block>
+          </view>
+        </view>
+      </view>
+      <view class="replies">
+        <block wx:for="{{replies}}" wx:for-item="item">
+          <view class='reply'>
+            <view class='reply_user'>
+              {{item.user.name}}
+            </view>
+            <view class='reply_content'>
+              {{item.content}}
+            </view>
+           </view>
+        </block>
+      </view>
+    </view>
+</view>

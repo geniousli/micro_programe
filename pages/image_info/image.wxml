@@ -1,0 +1,6 @@
+<!--pages/image_info/image.wxml-->
+<view> 
+  <block wx:for="{{images}}" wx:for-item="item">
+    <image mode="widthFix" src="{{item}}" class="thum_image"></image>
+  </block>
+</view>
